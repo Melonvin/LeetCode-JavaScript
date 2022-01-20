@@ -26,7 +26,7 @@
 
 ### 2.1 简单题
 
-|  No.  | Title                                                |                    Solution                    | Difficulty |
-| :---: | :--------------------------------------------------- | :--------------------------------------------: | :--------: |
-| 0001  | [Two Sum](https://leetcode-cn.com/problems/two-sum/) | [JS](../03-LeetCode/0001~0099/0001.Two Sum.md) |    Easy    |
+|  No.  | Title                                                |                    Solution                     | Difficulty |
+| :---: | :--------------------------------------------------- | :---------------------------------------------: | :--------: |
+| 0001  | [Two Sum](https://leetcode-cn.com/problems/two-sum/) | [JS](https://leetcode-cn.com/problems/two-sum/) |    Easy    |
 
