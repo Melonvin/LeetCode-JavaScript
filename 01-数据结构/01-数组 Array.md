@@ -32,8 +32,9 @@
 
 ### 2.2 中等题
 
-|  No.  | Title                                                          |                      Solution                      | Difficulty |
-| :---: | :------------------------------------------------------------- | :------------------------------------------------: | :--------: |
-| 0015  | [3Sum](https://leetcode-cn.com/problems/3sum/)                 | [JS](../03-LeetCode%20题解/0001~0099/0015.3Sum.md) |   Medium   |
-| 0016  | [4Sum](../03-LeetCode%20题解/0001~0099/0016.3Sum%20Closest.md) |                       Medium                       |
+|  No.  | Title                                                          |                           Solution                           | Difficulty |
+| :---: | :------------------------------------------------------------- | :----------------------------------------------------------: | :--------: |
+| 0015  | [3Sum](https://leetcode-cn.com/problems/3sum/)                 |      [JS](../03-LeetCode%20题解/0001~0099/0015.3Sum.md)      |   Medium   |
+| 0016  | [3Sum Closest](https://leetcode-cn.com/problems/3sum-closest/) | [JS](../03-LeetCode%20题解/0001~0099/0016.3Sum%20Closest.md) |   Medium   |
+| 0018  | [4Sum](https://leetcode-cn.com/problems/4sum/)                 |      [JS](../03-LeetCode%20题解/0001~0099/0018.4Sum.md)      |   Medium   |
 
