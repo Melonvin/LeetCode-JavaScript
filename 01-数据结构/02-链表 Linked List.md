@@ -148,6 +148,9 @@ class LinkedList {
 ![图片1](https://melonvin-1302080640.cos.ap-shanghai.myqcloud.com/%E5%9B%BE%E7%89%871.png)
 
 ```js
+/**
+ * @description 双向链表节点
+ */
 class DoublyNode extends Node {
   constructor(element, next, prev) {
     super(element, next)
@@ -155,14 +158,84 @@ class DoublyNode extends Node {
   }
 }
 
+/**
+ * @description 双向链表
+ */
 class DoublyLinkedList extends LinkedList {
   constructor() {
     super()
     // 表尾
     this.tail = undefined
   }
-  
-  // 方法略，自己实现吧~
+
+  /**
+   * @description 在任意位置插入元素
+   * @param {*} element 
+   * @param {number} index 
+   * @returns {boolean} 是否插入成功
+   */
+  insert(element, index) {
+    if (index >= 0 && index <= this.count) {
+      const node = new DoublyNode(element)
+      let current = this.head
+      if (index === 0) {
+        if (this.head == null) {
+          this.head = node
+          this.tail = node
+        } else {
+          node.next = this.head
+          current.prev = node
+          this.head = node
+        }
+      } else if (index === this.count) {
+        current = this.tail
+        current.next = node
+        node.prev = current
+        this.tail = node
+      } else {
+        const previous = this.getElementAt(index - 1)
+        current = previous.next
+        node.next = current
+        previous.next = node
+        current.prev = node
+        node.prev = previous
+      }
+      this.count++
+      return true
+    }
+    return false
+  }
+
+  /**
+   * @description 从任意位置移除元素
+   * @param {number} index 
+   * @returns 移除元素
+   */
+  removeAt(index) {
+    if (index >= 0 && index < this.count) {
+      let current = this.head
+      if (index === 0) {
+        this.head = current.next
+        if (this.count === 1) {
+          this.tail = undefined
+        } else {
+          this.head.prev = undefined
+        }
+      } else if (index === this.count - 1) {
+        current = this.tail
+        this.tail = current.prev
+        this.tail.next = undefined
+      } else {
+        current = this.getElementAt(index)
+        const previous = current.prev
+        previous.next = current.next
+        current.next.prev = previous
+      }
+      this.count--
+      return current.element
+    }
+    return undefined
+  }
 }
 ```
 
@@ -175,6 +248,79 @@ class DoublyLinkedList extends LinkedList {
 同理，**双向循环链表**有指向 head 元素的 tail.next 和指向 tail 元素的 head.prev。
 
 ![图片3](https://melonvin-1302080640.cos.ap-shanghai.myqcloud.com/%E5%9B%BE%E7%89%873.png)
+
+```js
+/**
+ * @description 单向循环链表
+ */
+class CircularLinkedList extends LinkedList {
+  constructor() {
+    super()
+  }
+
+  /**
+   * @description 在任意位置插入元素
+   * @param {*} element 
+   * @param {number} index 
+   * @returns {boolean} 是否插入成功
+   */
+  insert(element, index) {
+    if (index >= 0 && index <= this.count) {
+      const node = new Node(element)
+      let current = this.head
+      if (index === 0) {
+        if (this.head == null) {
+          this.head = node
+          node.next = this.head
+        } else {
+          node.next = current
+          current = this.getElementAt(this.size() - 1)
+          this.head = node
+          current.next = this.head
+        }
+      } else {
+        const previous = this.getElementAt(index - 1)
+        node.next = previous.next
+        previous.next = node
+      }
+      this.count++
+      return true
+    }
+    return false
+  }
+
+  /**
+   * @description 从任意位置移除元素
+   * @param {number} index 
+   * @returns 移除元素
+   */
+  removeAt(index) {
+    if (index >= 0 && index < this.count) {
+      let current = this.head
+      if (index === 0) {
+        if (this.count === 1) {
+          this.head = undefined
+        } else {
+          const removed = this.head
+          current = this.getElementAt(this.size() - 1)
+          this.head = this.head.next
+          current.next = this.head
+          current = removed
+        }
+      } else {
+        const previous = this.getElementAt(index - 1)
+        current = previous.next
+        previous.next = current.next
+      }
+      this.count--
+      return current.element
+    }
+    return undefined
+  }
+}
+```
+
+
 
 ### 2.4 有序链表
 
