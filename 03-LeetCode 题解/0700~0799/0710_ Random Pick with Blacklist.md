@@ -101,35 +101,34 @@ class Solution {
 
 `JavaScript`
 ```JavaScript
-function Solution(n, blacklist) {
-  this.blackToWhite = new Map();
-  this.init(n, blacklist);
+class Solution {
+  constructor(n, blacklist) {
+    this.blackToWhite = new Map();
+    this.init(n, blacklist);
+  }
+  init(n, blacklist) {
+    const m = blacklist.length;
+    this.bound = n - m;
+    const set = new Set();
+    blacklist.forEach((item) => {
+      if (item >= this.bound) {
+        set.add(item);
+      }
+    });
+    let j = this.bound;
+    blacklist.forEach((item) => {
+      if (item < this.bound) {
+        while (set.has(j)) j++;
+        this.blackToWhite.set(item, j);
+        j++;
+      }
+    });
+  }
+  pick() {
+    const random = Math.floor(Math.random() * this.bound);
+    return this.blackToWhite.get(random) || random;
+  }
 }
-Solution.prototype.init = function (n, blacklist) {
-  var _this = this;
-  var m = blacklist.length;
-  this.bound = n - m;
-  var set = new Set();
-  blacklist.forEach(function (item) {
-    if (item >= _this.bound) {
-      set.add(item);
-    }
-  });
-  var j = this.bound;
-  blacklist.forEach(function (item) {
-    if (item < _this.bound) {
-      while (set.has(j)) j++;
-      _this.blackToWhite.set(item, j);
-      j++;
-    }
-  });
-};
-Solution.prototype.pick = function () {
-  var random = Math.floor(Math.random() * this.bound);
-  return this.blackToWhite.get(random) || random;
-};
-return Solution;
-
 /**
  * Your Solution object will be instantiated and called as such:
  * var obj = new Solution(n, blacklist)
